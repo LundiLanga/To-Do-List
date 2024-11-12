@@ -5,12 +5,12 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-color: #331a38; /* Dark background color for contrast */
+    background-color: #544197; /* Dark background color for contrast */
   }
   
   .container {
-    width: 300px;
-    padding: 20px;
+    width: 50%;
+    padding: 30px;
     background: #f8f5f8; /* Slightly lighter dark background */
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -20,7 +20,7 @@ body {
   
   h1 {
     margin: 0 0 20px;
-    color: #a14199; /* White for headings */
+    color: #a14199; /* Purple for headings */
   }
   
   .input-container {
@@ -48,7 +48,7 @@ body {
   }
   
   button:hover {
-    background-color: #7a4373; /* Darken on hover */
+    background-color: #721988; /* Darken on hover */
   }
   
   ul {
@@ -62,15 +62,16 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 8px;
-    background: #824388; /* Task item background */
+    background: #86578a; /* Task item background */
     margin-bottom: 8px;
     border-radius: 4px;
     color: #ffffff;
+    cursor: pointer;
   }
   
   li.completed {
-    text-decoration: line-through;
-    color: #a1a1a1; /* Gray color for completed tasks */
+    text-decoration: line-through; 
+    color: #24a04d; /* Green color for completed tasks */
   }
   
   li button {

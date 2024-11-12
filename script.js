@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tasks = await res.json();
     tasks.forEach(addTaskToDOM);
   }
-  
+
   async function addTask() {
     const taskInput = document.getElementById('taskInput');
     const text = taskInput.value.trim();
@@ -35,4 +35,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   
     taskElement.classList.toggle('completed');
+  }
+  
+  async function deleteTask(id) {
+    await fetch(`/tasks/${id}`, { method: 'DELETE' });
+    document.getElementById(id).remove();
+  }
+  
+  function addTaskToDOM(task) {
+    const taskList = document.getElementById('taskList');
+  
+    const li = document.createElement('li');
+    li.id = task.id;
+    li.className = task.completed ? 'completed' : '';
+    li.innerHTML = `
+      <span onclick="toggleTaskCompletion(${task.id})">${task.text}</span>
+      <button onclick="deleteTask(${task.id})">x</button>
+    `;
+  
+    taskList.appendChild(li);
   }

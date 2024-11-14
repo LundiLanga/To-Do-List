@@ -90,23 +90,24 @@ li {
 
 li.completed {
   text-decoration: line-through;
-  color: #24a04d;
+  
+  /* color: #24a04d; */
 }
 
 li button, li .edit-icon {
   background: none;
   border: none;
-  color: #ff7675;
+  color: #faf7f5;
   cursor: pointer;
   padding: 10px;
 }
 
 .edit-icon {
-  color: #f39c12; /* Yellow color for edit icon */
+  color: #4d3f32; /* Yellow color for edit icon */
   margin-right: 1px;
   cursor: pointer;
 }
 
 .edit-icon:hover {
-  color: #e67e22; /* Darker shade on hover */
+  color: #f8f6f3; /* Darker shade on hover */
 }

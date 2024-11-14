@@ -1,4 +1,5 @@
-const express = require('express');
+import express from 'express'
+import connectDB  from './database.js'
 const app = express();
 const PORT = 3000;
 
@@ -37,5 +38,6 @@ app.delete('/tasks/:id', (req, res) => {
 });
 
 app.listen(PORT, () => {
+  connectDB
   console.log(`Server is running on http://localhost:${PORT}`);
 });

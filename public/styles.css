@@ -5,7 +5,8 @@ body {
   align-items: center;
   min-height: 100vh;
   margin: 0;
-  background-image: url('./Images/purple.jpg');
+  background-image: url('./Images/Own.jpg');
+  background-size: 100% 100%;
   background-size: cover;
   background-position: center;
 }
@@ -41,9 +42,19 @@ input {
   color: #ffffff;
 }
 
+.edit-input {
+  width: 100%;
+  padding: 4px;
+  font-size: 1em;
+  color: #333333;
+  border: 1px solid #a51fb1;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+
 button {
   padding: 8px 12px;
-  background-color: hsl(305, 84%, 34%);
+  background-color: hsl(36, 31%, 46%);
   border: none;
   border-radius: 4px;
   color: #ffffff;

@@ -44,16 +44,53 @@ async function deleteTask(id) {
 
 async function editTask(id) {
   const taskElement = document.getElementById(id);
-  const text = prompt("Edit your task:", taskElement.querySelector('span').innerText);
+  const span = taskElement.querySelector('span');
+  
+  // Replace the text with an input field for editing
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.value = span.innerText;
+  input.className = 'edit-input';
+  
+  // Replace the span with the input field
+  taskElement.replaceChild(input, span);
+  input.focus();
+  
+  // Save changes when pressing "Enter" or when focus is lost
+  input.addEventListener('blur', async () => {
+    await saveEdit(input, id, taskElement);
+  });
+  
+  input.addEventListener('keydown', async (e) => {
+    if (e.key === 'Enter') {
+      await saveEdit(input, id, taskElement);
+    }
+  });
+}
+
+// Helper function to save edited task
+async function saveEdit(input, id, taskElement) {
+  const text = input.value.trim();
   
   if (text) {
-      await fetch(`/tasks/${id}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ text })
-      });
-
-      taskElement.querySelector('span').innerText = text;
+    // Send updated text to the server
+    await fetch(`/tasks/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text })
+    });
+    
+    // Replace input with updated text in a span
+    const updatedSpan = document.createElement('span');
+    updatedSpan.innerText = text;
+    updatedSpan.onclick = () => toggleTaskCompletion(id);
+    taskElement.replaceChild(updatedSpan, input);
+  } else {
+    // If the input is empty, revert to original text
+    const originalSpan = document.createElement('span');
+    originalSpan.innerText = input.defaultValue; // Keep the original text
+    originalSpan.onclick = () => toggleTaskCompletion(id);
+    taskElement.replaceChild(originalSpan, input);
   }
 }
 
@@ -69,6 +106,6 @@ function addTaskToDOM(task) {
     <i class="fas fa-pencil-alt edit-icon" onclick="editTask(${task.id})"></i>
     <button onclick="deleteTask(${task.id})">x</button>
   </div>
-`;
+  `;
   taskList.appendChild(li);
 }

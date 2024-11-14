@@ -64,10 +64,11 @@ function addTaskToDOM(task) {
   li.id = task.id;
   li.className = task.completed ? 'completed' : '';
   li.innerHTML = `
-    <span onclick="toggleTaskCompletion(${task.id})">${task.text}</span>
-    <button onclick="deleteTask(${task.id})">x</button>
+  <span onclick="toggleTaskCompletion(${task.id})">${task.text}</span>
+  <div class="icon-container">
     <i class="fas fa-pencil-alt edit-icon" onclick="editTask(${task.id})"></i>
-  `;
-
+    <button onclick="deleteTask(${task.id})">x</button>
+  </div>
+`;
   taskList.appendChild(li);
 }

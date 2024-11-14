@@ -5,7 +5,7 @@ body {
   align-items: center;
   min-height: 100vh;
   margin: 0;
-  background-image: url('../images/purple.jpg');
+  background-image: url('./Images/purple.jpg');
   background-size: cover;
   background-position: center;
 }

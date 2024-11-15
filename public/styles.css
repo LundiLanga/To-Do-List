@@ -5,7 +5,8 @@ body {
   align-items: center;
   min-height: 100vh;
   margin: 0;
-  background-image: url('./Images/Own.jpg');
+  /* background-image: url('./Images/Own.jpg'); */
+  background-color: #c78ce9;
   background-size: 100% 100%;
   background-size: cover;
   background-position: center;
@@ -36,17 +37,17 @@ h1 {
 input {
   flex: 1;
   padding: 8px;
-  background: #824388;
-  border: 1px solid #a51fb1;
+  background: #b4dcdd;
+  border: 1px solid #a467c7;
   border-radius: 4px;
-  color: #ffffff;
+  color: #141b1d;
 }
 
 .edit-input {
   width: 100%;
   padding: 4px;
   font-size: 1em;
-  color: #333333;
+  color: hsl(36, 48%, 54%);
   border: 1px solid #a51fb1;
   border-radius: 4px;
   background-color: #ffffff;
@@ -63,7 +64,7 @@ button {
 }
 
 button:hover {
-  background-color: #721988;
+  background-color: #a14199;
 }
 
 ul {
@@ -100,6 +101,7 @@ li button, li .edit-icon {
   color: #faf7f5;
   cursor: pointer;
   padding: 10px;
+  
 }
 
 .edit-icon {
@@ -110,4 +112,5 @@ li button, li .edit-icon {
 
 .edit-icon:hover {
   color: #f8f6f3; /* Darker shade on hover */
+  background-color: #a14199;
 }

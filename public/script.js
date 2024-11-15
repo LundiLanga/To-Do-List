@@ -14,13 +14,13 @@ async function addTask() {
   if (!text) return;
 
   const res = await fetch('/tasks', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text })
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ title: text }),
   });
 
   const task = await res.json();
-  addTaskToDOM(task);
+  addTaskToDOM(task.note);
   taskInput.value = '';
 }
 
@@ -29,9 +29,9 @@ async function toggleTaskCompletion(id) {
   const completed = !taskElement.classList.contains('completed');
 
   await fetch(`/tasks/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ completed })
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ completed }),
   });
 
   taskElement.classList.toggle('completed');
@@ -45,67 +45,55 @@ async function deleteTask(id) {
 async function editTask(id) {
   const taskElement = document.getElementById(id);
   const span = taskElement.querySelector('span');
-  
-  // Replace the text with an input field for editing
+
+  // Replace text span with an input field for editing
   const input = document.createElement('input');
   input.type = 'text';
   input.value = span.innerText;
   input.className = 'edit-input';
-  
-  // Replace the span with the input field
+
+  // Replace span with the input
   taskElement.replaceChild(input, span);
   input.focus();
-  
-  // Save changes when pressing "Enter" or when focus is lost
-  input.addEventListener('blur', async () => {
-    await saveEdit(input, id, taskElement);
-  });
-  
-  input.addEventListener('keydown', async (e) => {
-    if (e.key === 'Enter') {
-      await saveEdit(input, id, taskElement);
-    }
-  });
-}
 
-// Helper function to save edited task
-async function saveEdit(input, id, taskElement) {
-  const text = input.value.trim();
-  
-  if (text) {
-    // Send updated text to the server
-    await fetch(`/tasks/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text })
-    });
-    
-    // Replace input with updated text in a span
-    const updatedSpan = document.createElement('span');
-    updatedSpan.innerText = text;
-    updatedSpan.onclick = () => toggleTaskCompletion(id);
-    taskElement.replaceChild(updatedSpan, input);
-  } else {
-    // If the input is empty, revert to original text
-    const originalSpan = document.createElement('span');
-    originalSpan.innerText = input.defaultValue; // Keep the original text
-    originalSpan.onclick = () => toggleTaskCompletion(id);
-    taskElement.replaceChild(originalSpan, input);
-  }
+  // Save changes on "Enter" key or blur event
+  const saveChanges = async () => {
+    const text = input.value.trim();
+    if (text) {
+      await fetch(`/tasks/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: text }),
+      });
+
+      const updatedSpan = document.createElement('span');
+      updatedSpan.innerText = text;
+      updatedSpan.onclick = () => toggleTaskCompletion(id);
+      taskElement.replaceChild(updatedSpan, input);
+    } else {
+      // Revert to original text if input is empty
+      taskElement.replaceChild(span, input);
+    }
+  };
+
+  input.addEventListener('blur', saveChanges);
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') saveChanges();
+  });
 }
 
 function addTaskToDOM(task) {
   const taskList = document.getElementById('taskList');
 
   const li = document.createElement('li');
-  li.id = task.id;
+  li.id = task._id;
   li.className = task.completed ? 'completed' : '';
   li.innerHTML = `
-  <span onclick="toggleTaskCompletion(${task.id})">${task.text}</span>
-  <div class="icon-container">
-    <i class="fas fa-pencil-alt edit-icon" onclick="editTask(${task.id})"></i>
-    <button onclick="deleteTask(${task.id})">x</button>
-  </div>
+    <span onclick="toggleTaskCompletion('${task._id}')">${task.title}</span>
+    <div class="icon-container">
+      <i class="fas fa-pencil-alt edit-icon" onclick="editTask('${task._id}')"></i>
+      <button onclick="deleteTask('${task._id}')">x</button>
+    </div>
   `;
   taskList.appendChild(li);
 }

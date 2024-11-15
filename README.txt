@@ -35,4 +35,4 @@ I have used the following **TECHNOLOGIES**:
 
 **CONTACT ME**
 
-You can use this emails to reach out to me: alulundilanga@gmail.com
+You can use this emails to reach out to me: alulundilanga@gmail.com 

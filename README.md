@@ -14,21 +14,24 @@ It contains the following **FEATURES**:
 I have used the following **TECHNOLOGIES**:
 
 *FRON-END
--HTML
--CSS 
--JavaScript (to interact with the backend)
+- HTML
+- CSS 
+- JavaScript (to interact with the backend)
 
 *BACK-END
--Node.js
--Express.js(to handle API requests and manage tasks)
+- Node.js
+- Express.js(to handle API requests and manage tasks)
 
-ICONS
--Delete icon(for task deletion)
--Edit icon- pen like icon (for task editing)
+**ICONS**
+- Delete icon(for task deletion)
+- Edit icon- pen like icon (for task editing)
 
-How to RUN my code
--Clone the repository then on git bash you run this command- git clone<reposiotoy_url>
--inside the brackets put on your repository link
+**How to RUN my code**
+
+1. Clone the repository 
+2. Then, on git bash/command prompt you run this command - git clone<reposiotoy_url>
+
+*Make sure inside the brackets you put on your repository link*
 
 **CONTACT ME**
 

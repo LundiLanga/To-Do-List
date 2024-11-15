@@ -5,8 +5,8 @@ body {
   align-items: center;
   min-height: 100vh;
   margin: 0;
-  /* background-image: url('./Images/Own.jpg'); */
-  background-color: #c78ce9;
+  background-image: url('./Images/Own.jpg');
+  /* background-color: #c78ce9; */
   background-size: 100% 100%;
   background-size: cover;
   background-position: center;

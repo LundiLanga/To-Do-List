@@ -33,6 +33,10 @@ I have used the following **TECHNOLOGIES**:
 
 *Make sure inside the brackets you put on your repository link*
 
+**LIVE DEMO**
+
+https://aquamarine-pothos-cd9d8f.netlify.app/
+
 **CONTACT ME**
 
 You can use this emails to reach out to me: alulundilanga@gmail.com

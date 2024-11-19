@@ -2,10 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchTasks();
 });
 
-
+const Server_URI="https://to-do-list-server-9pax.onrender.com";
 
 async function fetchTasks() {
-  const res = await fetch(`${process.env.Server_URI}/tasks`);
+  const res = await fetch(`${Server_URI}/tasks`);
   const tasks = await res.json();
   tasks.forEach(addTaskToDOM);
 }
@@ -15,7 +15,7 @@ async function addTask() {
   const text = taskInput.value.trim();
   if (!text) return;
 
-  const res = await fetch(`${process.env.Server_URI}/tasks`, {
+  const res = await fetch(`${Server_URI}/tasks`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ title: text }),
@@ -30,7 +30,7 @@ async function toggleTaskCompletion(id) {
   const taskElement = document.getElementById(id);
   const completed = !taskElement.classList.contains('completed');
 
-  await fetch(`${process.env.Server_URI}/tasks/${id}`, {
+  await fetch(`${Server_URI}/tasks/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ completed }),
@@ -40,7 +40,7 @@ async function toggleTaskCompletion(id) {
 }
 
 async function deleteTask(id) {
-  await fetch(`${process.env.Server_URI}/tasks/${id}`, { method: 'DELETE' });
+  await fetch(`${Server_URI}/tasks/${id}`, { method: 'DELETE' });
   document.getElementById(id).remove();
 }
 
@@ -62,7 +62,7 @@ async function editTask(id) {
   const saveChanges = async () => {
     const text = input.value.trim();
     if (text) {
-      await fetch(`${process.env.Server_URI}/tasks/${id}`, {
+      await fetch(`${Server_URI}/tasks/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title: text }),

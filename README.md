@@ -35,7 +35,7 @@ I have used the following **TECHNOLOGIES**:
 
 **LIVE DEMO**
 
-https://aquamarine-pothos-cd9d8f.netlify.app/
+https://to-do-list-p7th.onrender.com
 
 **CONTACT ME**
 
